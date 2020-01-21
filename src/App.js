@@ -1,9 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import UserOutput from './UserOutput/UserOutput'
+import UserInput from './UserInput/UserInput';
+import './UserInput/UserInput.css';
+
+import UserOutput from './UserOutput/UserOutput';
+import './UserOutput/UserOutput.css';
 
 class App extends Component {
+  state = {
+    users: [
+      { userName: "Tom" },
+      { userName: "John" },
+      { userName: "Doe" }
+    ]
+  };
+
+  changeUserNameHandler = (event) => {
+    this.setState({
+      users: [
+        { userName: event.target.value },
+        { userName: "John" },
+        { userName: "Doe" }
+      ]
+    });
+  };
 
   render() {
     return (
@@ -21,9 +42,10 @@ class App extends Component {
           <li>Add styling of your choice to your components/ elements in the components - both with inline styles and stylesheets</li>
         </ol>
 
-        <UserOutput userName="Tom">Here is some text.</UserOutput>
-        <UserOutput userName="John">Here is some more text.</UserOutput>
-        <UserOutput userName="Doe">Here is even more text.</UserOutput>
+        <UserInput changeName={this.changeUserNameHandler} inputValue={this.state.users[0].userName} />
+        <UserOutput userName={this.state.users[0].userName}>Here is some text.</UserOutput>
+        <UserOutput userName={this.state.users[1].userName}>Here is some more text.</UserOutput>
+        <UserOutput userName={this.state.users[2].userName}>Here is even more text.</UserOutput>
       </div>
     );
   }

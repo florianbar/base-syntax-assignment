@@ -2,7 +2,7 @@ import React from 'react';
 
 const userOutput = (props) => {
     return (
-        <div>
+        <div className="UserOutput">
             <p>{props.userName}</p>
             <p>{props.children}</p>
         </div>
